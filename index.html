@@ -1,0 +1,328 @@
+<!--
+================================================================================
+🎉 Invitación Web Premium — Versión Hello Kitty (HTML)
+Ajustada según pedido:
+- Tema del cumple = imágenes Hello Kitty (no dress code)
+- Fondo del sobre desde carpeta /imagenes
+- Sobre personalizado como imagen (SVG queda comentado por si querés volver)
+- Sin botón flotante de compartir (quedan música + volver arriba)
+================================================================================
+-->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>🎀 Cumple de Rocío</title>
+    <meta name="description" content="Invitación digital premium temática Hello Kitty. Confirmá asistencia, mirá ubicación y disfrutá la experiencia." />
+    <meta name="theme-color" content="#ff8fb7" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="🎀 Cumple de Rocío — Hello Kitty" />
+    <meta property="og:description" content="Rocío cumple 6 y te invita a un cumple lleno de moñitos y gatitos 🩷" />
+    <meta property="og:type" content="website" />
+    <!-- cambiás esto por una imagen tuya -->
+    <meta property="og:image" content="imagenes/preview-kitty.jpg" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="🎀 Cumple de Rocío" />
+    <meta name="twitter:description" content="Rocío cumple 6. Confirmá por WhatsApp." />
+    <meta name="twitter:image" content="imagenes/preview-kitty.jpg" />
+
+    <!-- iOS / PWA icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://fav.farm/🎀" />
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Baloo+2:wght@500;600&display=swap" rel="stylesheet" />
+
+    <!-- Iconos -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="data:,">
+  </head>
+  <body>
+    <noscript>
+      <div class="noscript">
+        Para vivir la experiencia completa activá JavaScript o abrí esta invitación desde otro navegador.
+      </div>
+    </noscript>
+
+    <!-- Overlay general -->
+    <div class="overlay" aria-hidden="true"></div>
+
+    <!-- ===================================================
+         PORTADA / SOBRE
+         Fondo = imagen tuya
+         Sobre = imagen tuya
+         =================================================== -->
+    <section class="cover" id="cover" aria-label="Portada de la invitación">
+      <div class="sobre-wrap" id="sobreContainer" tabindex="0">
+        <!-- 👇 Esta es la imagen del sobre que vamos a poder cambiar -->
+        <img
+          src="imagenes/fondoSobre.png"
+          alt="Sobre del cumpleaños Hello Kitty"
+          class="sobre-img"
+          data-aos="zoom-in"
+          data-aos-duration="650"
+        />
+
+        <!-- ⚠️ Si querés volver al SVG original, descomentá esto
+        <svg ...> ... </svg>
+        -->
+
+        <button class="btn-texto hint-abrir" id="btnAbrirSobre" type="button" aria-label="Abrir invitación">
+          <i class="ri-mail-open-line" aria-hidden="true"></i> Tocá para abrir
+        </button>
+        <p class="mini-text">Cumple de Rocío · 6 años</p>
+      </div>
+
+      <div class="credit-badge" aria-hidden="true">
+        <i class="ri-sparkling-line"></i> Invitación infantil
+      </div>
+    </section>
+
+    <!-- ===================================================
+         CONTENIDO PRINCIPAL (se muestra al abrir)
+         =================================================== -->
+    <main id="app" class="app" hidden>
+      <!-- HERO -->
+      <header class="hero" role="banner" aria-label="Bienvenida">
+        <div class="hero-inner">
+          <span class="pill" data-aos="fade-down">
+            <i class="ri-star-smile-line"></i> ¡Hola!
+          </span>
+
+          <h1 class="titulo" id="tituloEvento" data-aos="fade-up">
+            ¡Rocío cumple 6!
+            <span class="subtitulo" id="subtituloEvento">Hagamos juntos recuerdos que queden en el corazón 💕</span>
+          </h1>
+
+          <p class="fecha" id="fechaEventoText" data-aos="fade-up" data-aos-delay="80">
+            Viernes 14 de noviembre — 17:00 a 20:00 hs
+          </p>
+
+          <p class="intro" data-aos="fade-up" data-aos-delay="140">
+            Vamos a reírnos, jugar, cantar y compartir momentos que vas a recordar.<br> 💕 ¡Te espero con toda la ilusión!
+          </p>
+
+          <div class="cta-group" data-aos="fade-up" data-aos-delay="200">
+            <button class="btn btn-primario" id="btnRSVP" data-goto="#info" type="button">
+              <i class="ri-hearts-fill"></i> Confirmar asistencia
+            </button>
+            <a class="btn btn-secundario" id="btnMapsHero" href="#" target="_blank" rel="noopener">
+              <i class="ri-map-pin-2-line"></i> ¿Cómo llegar?
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-deco" aria-hidden="true">
+          <span class="halo"></span>
+          <span class="sparkle"></span>
+        </div>
+      </header>
+
+      <!-- CONTADOR -->
+      <section class="contador" id="contador" aria-label="Cuenta regresiva">
+        <div class="chips">
+          <div class="chip" data-aos="fade-up"><span class="num" id="dias">00</span><span class="lbl">Días</span></div>
+          <div class="chip" data-aos="fade-up" data-aos-delay="60"><span class="num" id="horas">00</span><span class="lbl">Horas</span></div>
+          <div class="chip" data-aos="fade-up" data-aos-delay="120"><span class="num" id="minutos">00</span><span class="lbl">Min</span></div>
+          <div class="chip" data-aos="fade-up" data-aos-delay="180"><span class="num" id="segundos">00</span><span class="lbl">Seg</span></div>
+        </div>
+      </section>
+
+      <!-- INFO -->
+      <section class="info-grid" id="info" aria-label="Información del cumpleaños">
+        <!-- Día y hora -->
+        <article class="card" data-aos="fade-up">
+          <h3><i class="ri-time-line"></i> Día y hora</h3>
+          <p><strong>Viernes 14 de noviembre</strong> — 17:00 a 20:00 hs</p>
+          <p class="nota-kitty">⏰ Llegá puntual así jugamos todos 🩷</p>
+          <div class="card-actions">
+            <button class="btn btn-secundario" id="btnCalendar" type="button">
+              <i class="ri-calendar-event-line"></i> Agregar al calendario
+            </button>
+            <a class="btn btn-link" id="gCalLink" href="#" target="_blank" rel="noopener" hidden>Google Calendar</a>
+          </div>
+        </article>
+
+        <!-- Lugar -->
+        <article class="card" data-aos="fade-up" data-aos-delay="60">
+          <h3><i class="ri-home-3-line"></i> Lugar</h3>
+          <p id="lugarNombre">Casa / salón en Melo</p>
+          <h4>Dirección</h4>
+          <p id="lugarCiudad">Del Pilar 621, Melo, Uruguay</p>
+          <a class="btn btn-link" id="btnMaps" href="#" target="_blank" rel="noopener">
+            <i class="ri-navigation-line"></i> ¿Cómo llegar?
+          </a>
+        </article>
+
+        <!-- Tema del cumple (💖 AHORA ES GALERÍA HELLO KITTY) 
+        <article class="card" data-aos="fade-up" data-aos-delay="120">
+          <h3><i class="ri-bear-smile-line"></i> Tema Hello Kitty</h3>
+          <p>Todo rosita, moñitos y gatitas 🩷 Podés ver las ideas acá:</p>
+          <div class="gallery-kitty" aria-label="Imágenes de Hello Kitty">
+            Estas imágenes las ponés vos en /imagenes
+            <figure>
+              <img src="imagenes/kitty1.jpg" alt="Decoración Hello Kitty rosa" loading="lazy" decoding="async" />
+              <figcaption>Decoración</figcaption>
+            </figure>
+            <figure>
+              <img src="imagenes/kitty2.jpg" alt="Torta Hello Kitty" loading="lazy" decoding="async" />
+              <figcaption>Torta</figcaption>
+            </figure>
+            <figure>
+              <img src="imagenes/kitty3.jpg" alt="Globos Hello Kitty" loading="lazy" decoding="async" />
+              <figcaption>Globos</figcaption>
+            </figure>
+            <figure>
+              <img src="imagenes/kitty4.jpg" alt="Detalles con moños" loading="lazy" decoding="async" />
+              <figcaption>Moñitos</figcaption>
+            </figure>
+          </div>
+        </article>-->
+
+        <!-- Regalo (sacado el texto de “podés ocultar desde JS”) 
+        <article class="card" data-aos="fade-up" data-aos-delay="180" id="regalo">
+          <h3><i class="ri-gift-line"></i> Regalo</h3>
+          <p class="nota-kitty">Tu presencia es el mejor regalo 💗</p>
+           si querés cuenta ponés el texto desde script
+          <p id="ctaCuenta" class="cta-cuenta" hidden>
+            Banco Ejemplo — <span id="numeroCuenta">000000-0</span>
+          </p>
+          <div class="card-actions" id="accionesCuenta" hidden>
+            <button class="btn btn-secundario" id="btnCopiarCuenta" type="button">
+              <i class="ri-file-copy-line"></i> Copiar cuenta
+            </button>
+          </div>
+        </article>-->
+
+        <!-- Confirmar asistencia -->
+        <article class="card" data-aos="fade-up" data-aos-delay="240" id="rsvp">
+          <h3><i class="ri-ticket-2-line"></i> Confirmar asistencia</h3>
+          <p>¿Venís al cumple de Rocío? Avisale a mamá 😉</p>
+          <button class="btn btn-primario" id="abrirModal" type="button">
+            <i class="ri-whatsapp-line"></i> Confirmar por WhatsApp
+          </button>
+        </article>
+      </section>
+
+      <!-- Galería (dejamos la tuya de salón por si querés mostrar deco) 
+      <section class="galeria" id="galeria" aria-label="Galería del cumple">
+        <div class="grid">
+          <figure class="g-item" data-aos="zoom-in">
+            <img src="imagenes/ambiente-1.jpg" data-full="imagenes/ambiente-1_hd.jpg" alt="Ambientación del cumple" loading="lazy" decoding="async" />
+            <figcaption>Ambientación</figcaption>
+          </figure>
+          <figure class="g-item" data-aos="zoom-in" data-aos-delay="80">
+            <img src="imagenes/ambiente-2.jpg" data-full="imagenes/ambiente-2_hd.jpg" alt="Mesas decoradas" loading="lazy" decoding="async" />
+            <figcaption>Mesas decoradas</figcaption>
+          </figure>
+          <figure class="g-item" data-aos="zoom-in" data-aos-delay="160">
+            <img src="imagenes/decoracion.jpg" data-full="imagenes/decoracion_hd.jpg" alt="Detalle de decoración" loading="lazy" decoding="async" />
+            <figcaption>Detalle de decoración</figcaption>
+          </figure>
+        </div>
+      </section>-->
+
+      <!-- Programa -->
+      <section class="programa" id="programa" aria-label="Actividades del cumple">
+        <h2 class="sec-title" data-aos="fade-up"><i class="ri-calendar-check-line"></i> ¿Qué vamos a hacer?</h2>
+        <ul class="timeline">
+          <li class="t-item" data-aos="fade-up" data-aos-delay="0"><span class="t-hora">17:00</span> Llegada y juegos</li>
+          <li class="t-item" data-aos="fade-up" data-aos-delay="60"><span class="t-hora">18:00</span> Merienda y fotos</li>
+          <li class="t-item" data-aos="fade-up" data-aos-delay="120"><span class="t-hora">19:00</span> Soplar las velitas 🎂</li>
+          <li class="t-item" data-aos="fade-up" data-aos-delay="180"><span class="t-hora">19:30</span> Más juegos y despedida</li>
+        </ul>
+      </section>
+
+      <!-- Modal WhatsApp -->
+      <div id="modalConfirmacion" class="modal" aria-hidden="true" aria-labelledby="modalTitle" role="dialog">
+        <div class="modal-contenido" role="document" data-aos="zoom-in">
+          <button class="cerrar-modal" id="cerrarModal" type="button" aria-label="Cerrar">
+            <i class="ri-close-line"></i>
+          </button>
+
+          <div class="icono-formulario" aria-hidden="true">
+            <i class="ri-bear-smile-line"></i>
+          </div>
+
+          <h2 id="modalTitle">¿Venís al cumple?</h2>
+          <p>Avisame así mamá sabe cuántos vienen 🩷</p>
+
+          <form id="formAsistencia" autocomplete="on">
+            <fieldset class="radio-group" role="radiogroup" aria-label="Asistencia">
+              <label><input type="radio" name="asiste" value="sí" required /> Sí, voy 🎉</label>
+              <label><input type="radio" name="asiste" value="no" /> No puedo 😔</label>
+            </fieldset>
+
+            <label class="campo">
+              <span>Nombre del invitado</span>
+              <input type="text" name="nombre" id="nombreInvitado" required />
+            </label>
+
+            <label class="campo">
+              <span>Mensaje (opcional)</span>
+              <input type="text" name="extra" id="extraMensaje" placeholder="..." />
+            </label>
+
+            <button type="submit" class="btn btn-primario ancho">
+              <i class="ri-whatsapp-line"></i> Enviar por WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer" aria-label="Pie de página">
+        <div class="footer-inner" data-aos="fade-in">
+          <p>Con cariño, <strong id="firmaHost">Rocío Brun y familia</strong></p>
+<small>&copy; <span id="anioActual"></span> 
+  Diseñado por 
+  <a href="https://rodrigobrun.github.io/PORTFOLIO_RB/" target="_blank" class="autor-link">
+    Rodrigo Brun
+  </a>
+</small>
+
+        </div>
+      </footer>
+    </main>
+
+    <!-- FABs (sin compartir) -->
+    <button id="btnMusica" class="fab fab-musica" type="button" aria-label="Pausar o reproducir música" hidden>
+      <i class="ri-music-2-line"></i>
+    </button>
+
+    <button id="btnTop" class="fab fab-top" type="button" aria-label="Volver arriba" hidden>
+      <i class="ri-arrow-up-line"></i>
+    </button>
+
+   <!-- Audio -->
+<audio id="pista" preload="none">
+  <source src="imagenes/cumple-kitty.mp3" type="audio/mpeg" />
+  Tu navegador no soporta audio.
+</audio>
+
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" hidden>
+      <button class="lb-close" id="lbClose" aria-label="Cerrar imagen (Esc)">✕</button>
+      <figure class="lb-figure">
+        <img id="lbImg" alt="" />
+        <figcaption id="lbCap"></figcaption>
+      </figure>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+    <script src="script.js" defer></script>
+  </body>
+</html>
